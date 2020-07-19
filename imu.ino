@@ -154,14 +154,16 @@ void _readAccelerometer(BLEDevice central, BLECharacteristic characteristic) {
   float x, y, z;
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
-    if (characteristic == accelerometerCharacteristicX)
+    if (characteristic == accelerometerCharacteristicX) {
       accelerometerCharacteristicX.writeValue(x);
-
-    else if (characteristic == accelerometerCharacteristicY)
+      Serial.println("accelerometer X");
+      
+    } else if (characteristic == accelerometerCharacteristicY) {
       accelerometerCharacteristicY.writeValue(y);
 
-    else if (characteristic == accelerometerCharacteristicZ)
+    } else if (characteristic == accelerometerCharacteristicZ) {
       accelerometerCharacteristicY.writeValue(z);
+    }
   }
 
 }
