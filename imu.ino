@@ -156,7 +156,6 @@ void _readAccelerometer(BLEDevice central, BLECharacteristic characteristic) {
     IMU.readAcceleration(x, y, z);
     if (characteristic == accelerometerCharacteristicX) {
       accelerometerCharacteristicX.writeValue(x);
-      Serial.println("accelerometer X");
       
     } else if (characteristic == accelerometerCharacteristicY) {
       accelerometerCharacteristicY.writeValue(y);
