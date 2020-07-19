@@ -13,7 +13,7 @@
 #define BLE_DESC_CHAR_USER_DESC "2901"
 
 
-void buildLEDService() {
+void setupLEDService() {
   BLEService ledService(UUID_LIGHT_SERVICE1);
   BLEBooleanCharacteristic switchChar(BLE_CHAR_BSS_CTRL_POINT, BLERead | BLEWrite);
   BLEDescriptor switchDesc(BLE_DESC_CHAR_USER_DESC, "LED orange on/off");

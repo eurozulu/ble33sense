@@ -19,13 +19,14 @@ void setup() {
   // set the UUID for the service this peripheral advertises
   BLE.setAdvertisedServiceUuid(SERVICE_UUID);
   BLE.setAppearance(0x0080);  // Set as Generic computer
-  
+
   Serial.println("Building services...");
 
-  buildEnvironmentService();
-  buildIMUService();
-  buildLEDService();
-  
+  setupEnvironmentService();
+  setupIMUService();
+  setupLEDService();
+  setupColourService();
+
   Serial.println("Advertising services...");
   BLE.advertise();
 }
@@ -34,7 +35,7 @@ void loop() {
   BLE.poll();
 
   pollIMU();
-
+  pollColours();
 }
 
 

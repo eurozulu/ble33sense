@@ -14,7 +14,7 @@ BLEUnsignedIntCharacteristic humidCharacteristic("2A6F", BLERead | BLENotify);
 BLEFloatCharacteristic barometerCharacteristic("2A6D", BLERead | BLENotify);
 
 
-void buildEnvironmentService() {
+void setupEnvironmentService() {
   if (!HTS.begin()) {  // Initialize HTS22 sensor
     Serial.println("Failed to initialize humidity temperature sensor!");
     while (1);

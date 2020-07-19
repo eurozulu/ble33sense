@@ -11,7 +11,7 @@ BLEFloatCharacteristic magneticCharacteristicY("2A2C", BLERead | BLENotify);
 BLEFloatCharacteristic magneticCharacteristicZ("2A2C", BLERead | BLENotify);
 
 // Position 3D characteristic gyro
-BLEFloatCharacteristic gyroCharacteristicX("2A30", BLERead | BLENotify);
+BLEFloatCharacteristic gyroCharacteristicX("2A30", BLERead | BLENotify);  // ? 2Ad5
 BLEFloatCharacteristic gyroCharacteristicY("2A30", BLERead | BLENotify);
 BLEFloatCharacteristic gyroCharacteristicZ("2A30", BLERead | BLENotify);
 
@@ -54,7 +54,7 @@ void pollIMU() {
   }
 }
 
-void buildIMUService() {
+void setupIMUService() {
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
     while (1);
@@ -124,14 +124,9 @@ void _readMagnetic(BLEDevice central, BLECharacteristic characteristic) {
   float x, y, z;
   if (IMU.magneticFieldAvailable()) {
     IMU.readMagneticField(x, y, z);
-    if (characteristic == magneticCharacteristicX)
-      magneticCharacteristicX.writeValue(x);
-
-    else if (characteristic == magneticCharacteristicY)
-      magneticCharacteristicY.writeValue(y);
-
-    else if (characteristic == magneticCharacteristicZ)
-      magneticCharacteristicZ.writeValue(z);
+    magneticCharacteristicX.writeValue(x);
+    magneticCharacteristicY.writeValue(y);
+    magneticCharacteristicZ.writeValue(z);
   }
 }
 
@@ -139,14 +134,9 @@ void _readGyro(BLEDevice central, BLECharacteristic characteristic) {
   float x, y, z;
   if (IMU.gyroscopeAvailable()) {
     IMU.readGyroscope(x, y, z);
-    if (characteristic == gyroCharacteristicX)
-      gyroCharacteristicX.writeValue(x);
-
-    else if (characteristic == gyroCharacteristicY)
-      gyroCharacteristicY.writeValue(y);
-
-    else if (characteristic == gyroCharacteristicZ)
-      gyroCharacteristicZ.writeValue(z);
+    gyroCharacteristicX.writeValue(x);
+    gyroCharacteristicY.writeValue(y);
+    gyroCharacteristicZ.writeValue(z);
   }
 }
 
@@ -154,15 +144,8 @@ void _readAccelerometer(BLEDevice central, BLECharacteristic characteristic) {
   float x, y, z;
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(x, y, z);
-    if (characteristic == accelerometerCharacteristicX) {
-      accelerometerCharacteristicX.writeValue(x);
-      
-    } else if (characteristic == accelerometerCharacteristicY) {
-      accelerometerCharacteristicY.writeValue(y);
-
-    } else if (characteristic == accelerometerCharacteristicZ) {
-      accelerometerCharacteristicY.writeValue(z);
-    }
+    accelerometerCharacteristicX.writeValue(x);
+    accelerometerCharacteristicY.writeValue(y);
+    accelerometerCharacteristicY.writeValue(z);
   }
-
 }
