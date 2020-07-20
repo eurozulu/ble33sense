@@ -26,6 +26,7 @@ void setup() {
   setupIMUService();
   setupLEDService();
   setupColourService();
+  setupProximityService();
 
   Serial.println("Advertising services...");
   BLE.advertise();
@@ -36,6 +37,7 @@ void loop() {
 
   pollIMU();
   pollColours();
+  pollProximity();
 }
 
 
